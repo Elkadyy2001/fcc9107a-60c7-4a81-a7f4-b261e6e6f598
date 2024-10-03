@@ -26,7 +26,7 @@ jobs:
           keytool -genkeypair -v -keystore $(pwd)/AppMare.keystore  -keyalg RSA -keysize 2048 -validity 365000 -storepass "${{ secrets.KEYSTOREPASS }}" -alias ${{ secrets.KEYSTOREALIAS }} -dname "cn=Appmare"
 
     - name: Setup Maui
-      run: dotnet workload install maui
+      run: dotnet workload install maui-android
     - name: Publish App
       run: |
          dotnet publish -f net8.0-android -c Release -p:AndroidKeyStore=true -p:AndroidSigningKeyStore="$(pwd)/AppMare.keystore" -p:AndroidSigningKeyAlias="AppMare" -p:AndroidSigningKeyPass="${{ secrets.KEYSTOREPASS }}" -p:AndroidSigningStorePass="${{ secrets.KEYSTOREPASS }}"
